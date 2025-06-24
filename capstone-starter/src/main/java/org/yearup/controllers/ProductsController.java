@@ -81,13 +81,14 @@ public class ProductsController
     {
         try
         {
-            productDao.create(product);
+            productDao.update(id, product); //changed .create to .update to fix bug 2
         }
         catch(Exception ex)
         {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
+
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
