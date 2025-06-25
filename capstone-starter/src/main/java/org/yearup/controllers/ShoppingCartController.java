@@ -69,13 +69,14 @@ public class ShoppingCartController
 
     // PUT /cart/products/{productId} - update quantity
     @PutMapping("/products/{productId}")
-    public void updateCartItem(@PathVariable int productId, @RequestBody ShoppingCartItem item, Principal principal)
+    public ShoppingCart updateCartItem(@PathVariable int productId, @RequestBody ShoppingCartItem item, Principal principal)
     {
         try
         {
             String username = principal.getName();
             User user = userDao.getByUserName(username);
             shoppingCartDao.updateQuantity(user.getId(), productId, item.getQuantity());
+            return shoppingCartDao.getCartByUserId(user.getId());
         }
         catch (Exception e)
         {
@@ -85,13 +86,14 @@ public class ShoppingCartController
 
     // DELETE /cart - clear cart
     @DeleteMapping
-    public void clearCart(Principal principal)
+    public ShoppingCart clearCart(Principal principal)
     {
         try
         {
             String username = principal.getName();
             User user = userDao.getByUserName(username);
             shoppingCartDao.clearCart(user.getId());
+            return shoppingCartDao.getCartByUserId(user.getId());
         }
         catch (Exception e)
         {
