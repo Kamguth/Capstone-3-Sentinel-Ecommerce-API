@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.yearup</groupId>
-    <artifactId>easyshop-capstone-starter</artifactId>
+    <artifactId>Sentinel-Ecommerce-API</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
